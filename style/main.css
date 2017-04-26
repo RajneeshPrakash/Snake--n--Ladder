@@ -1,0 +1,434 @@
+.turn1{
+	margin: 0px;
+	position: fixed;
+	z-index: 22; 
+	left:12%;	
+	top: 5%;
+	font-size: 40pt;
+	font-weight: bold;
+	border-radius: 50px;
+	-webkit-transform: rotate(90deg);
+	animation:pointTo 1s infinite;
+	-webkit-animation:pointTo 1s infinite; /* Safari and Chrome */
+	-webkit-animation-direction: alternate;
+
+}
+.turn2{
+	margin: 0px;
+	position: fixed;
+	z-index: 22; 
+	left:42%;	
+	top: 5%;
+	font-size: 40pt;
+	font-weight: bold;
+	border-radius: 50px;
+	-webkit-transform: rotate(90deg);
+	animation:pointTo 1s infinite;
+	-webkit-animation:pointTo 1s infinite; /* Safari and Chrome */
+	-webkit-animation-direction: alternate;
+
+}
+.text{font-size:15pt; font-style:italic; font-name:calibri;}
+@keyframes pointTo{
+	from {top:0%;}
+	to {top:5%;}
+}
+@-webkit-keyframes pointTo /* Safari and Chrome */{
+	from {top:0%;}
+	to {top:5%;}
+}
+input {
+    border: 5px solid white; 
+	border-radius:10px;
+    -webkit-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    -moz-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    padding: 15px;
+    background: rgba(255,255,255,0.5);
+    margin: 0 0 10px 0;
+}
+.pointer{
+	margin: 0px;
+	position: fixed;
+	z-index: 22; 
+	color:#F2CC24;
+	top: 30%;
+	font-size: 40pt;
+	font-weight: bold;
+	border-radius: 50px;
+	animation:leftToRight 1s infinite;
+	-webkit-animation:leftToRight 1s infinite; /* Safari and Chrome */
+	-webkit-animation-direction: alternate;
+
+}
+
+@keyframes leftToRight{
+	from {left:30%;}
+	to {left:35%}
+}
+@-webkit-keyframes leftToRight /* Safari and Chrome */{
+	from {left:30%;}
+	to {left:35%}
+}
+.window{
+position:absolute; 
+z-index:900; 
+top:20%;
+left:25%;
+height:60%; 
+width:50%; 
+background:#F7F0D0; 
+text-align:center; 
+border:10px solid #DAA520; 
+border-radius:80px;
+}
+#alert{
+	position:absolute;
+	height:100px;
+	width:400px;
+	text-align:center;
+	font-size:20pt;
+	opacity:1;
+	top:40%;
+	left:30%;
+	z-index:1400;
+	border: 2px solid grey;
+	background: #5C4230;
+	border-radius:20px;
+	color:#DE6F1F;
+	padding:20px;
+}
+#alert1{
+	position:absolute;
+	height:100%;
+	width:100%;
+	z-index:1300;
+	background: white;
+	opacity:0.8;
+}
+
+.cloud{
+	margin: 0px;
+	position: fixed;
+	z-index: 22; 
+	left: 30%;
+	animation:goToTop 1s infinite;
+	-webkit-animation:goToTop 1s infinite; /* Safari and Chrome */
+	-webkit-animation-direction: alternate;
+
+}
+
+@keyframes goToTop{
+	from {top:55%;}
+	to {top:80%}
+}
+@-webkit-keyframes goToTop /* Safari and Chrome */{
+	from {top:55%;}
+	to {top:80%}
+}
+
+
+
+.full{
+	position:fixed;
+	z-index: 25;  
+	left: 96.2%; 
+	top: 93.1%;
+	
+}
+.divShareManual{
+	position: fixed;
+	opacity:1; 
+	margin: 0px; 
+	width: 2.1%;
+	position: fixed;
+	z-index: 25;  
+	left: 97.9%; 
+	top: 200px;
+	border: 0px solid #F3F3F3;
+	box-shadow: 0px 0px 5px 4px #717171;
+	background: #FFFFFF;
+}
+
+#coolMenu,
+#coolMenu ul {
+	list-style: none;
+	text-align:left;
+}
+#coolMenu {
+	float: left;
+	position:fixed;
+	top:-3%;
+	left:0.65%;
+	z-index:500;
+	text-align:left;
+}
+
+#coolMenu li a {
+	display: block;
+	line-height: 2em;
+	padding: 0 1.5em;
+	text-decoration: none;
+	width:30px;
+	text-align:left;
+}
+#coolMenu ul {
+	position: absolute;
+	display: none;
+	z-index: 999;	
+	text-align:left;
+}
+#coolMenu ul li a {
+	width: 120px;	
+}
+#coolMenu li:hover ul.noJS {
+	display: block; 
+}
+
+#coolMenu {
+	font-family: 'Comic Sans MS', cursive, sans-serif;
+	font-size: 12px;
+	background: #2f8be8;
+	text-align:left;
+}
+#coolMenu > li > a {
+	color: #fff;
+	font-weight: bold;
+	text-align:left;
+}
+#coolMenu > li:hover > a {
+	background: #f09d28;
+	color: #000;	
+}
+
+
+/* Submenu
+------------------------------------------*/
+#coolMenu ul {
+	background: #f09d28;
+	
+}
+#coolMenu ul li a {
+	color: #000;
+}
+#coolMenu ul li:hover a {
+	background: #ffc97c;
+	font-weight: bold;
+}
+
+
+.help1{
+	margin:10px;
+	width:680px;
+	opacity:0.8;
+	background:gray;
+	color:#DAA520;
+	border: 1px solid red;
+	padding:10px;
+	border-radius:30px;
+}
+
+#help{
+	position:fixed;
+	top:20px;
+	right:2%;
+	color:purple;
+}
+.img{
+	position:fixed;
+	top:60%;
+	left:25%;
+	opacity:0.7;
+	border-radius:50px;
+}
+.start:hover{
+	cursor:pointer;
+	-webkit-transform:rotate(360deg); /* Safari and Chrome */	
+    -webkit-transition: -webkit-transform 1000ms ease-out 500ms, background 1300ms ease-out 200ms, border 1300ms ease-out 500ms;   
+    background:#FFFFFF;
+    border: 2px solid #0099CC;
+}
+#para{
+	border: 5px dashed black;
+	background: orange;
+	height:30px;
+	width:500px;
+	text-align:center;
+	font-weight:bold;
+	font-size:15pt;
+}
+h1 {
+margin: 0;
+font: bold 40px "Comic Sans MS", cursive, sans-serif;
+color: grey;
+text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaaaaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
+-webkit-transition: .2s all linear;
+}
+a {
+    color : #3AA6D0;    
+    text-decoration : none;
+}
+
+h6{
+    margin:2px;
+	color : #00B945;
+}
+
+/* ASIDE */
+
+aside {
+    float : right;
+    width : 320px;
+    margin-right: 40px;
+    margin-bottom : 15px;
+    background-color : #D0D0D0 ;
+    padding : 5px;
+    border : 1px solid #A8A8A8;
+	border-radius:10px;
+}
+
+aside h1 {
+    font-size : 1.2em;
+    margin-bottom : 4px;
+	color: brown;
+}
+
+aside h2 {
+    font-size : 1em;
+}
+
+aside div {
+    padding : 5px;
+    background-color : #F0F0F0;
+    margin-bottom : 15px;
+	text-align:left;
+}
+
+aside ul {
+    line-height : 1.8em;
+    list-style-image:url('../Images/tick.jpg');
+    color : #FF8500;
+}
+article {
+color:#936c90;
+padding:5px;
+width:40%;
+}
+section article{
+width:90%;
+}
+
+article header {
+    margin-bottom : 20px;
+	text-align:left;
+	font-weight:bold;
+	font-style:italic;
+}
+section header{
+	font-weight:bold;
+	font-variant:small-caps;
+}
+article section header {
+    text-align:center;	
+}
+/* NAV */
+
+nav {
+    text-align : center;
+    margin-top : 0;
+}
+
+nav ul {
+    list-style-type : none;
+    padding : 6px;
+}
+
+nav li {
+    display : inline;
+	border:1px solid purple;
+	border-radius:20px;
+	padding:7px;
+	list-style: none;
+}
+
+nav a {
+    font-weight : bold;
+    color : #0776A0;
+}
+
+
+footer {
+    text-align : center;
+    font-size : 0.8em;
+    font-style : italic;
+}
+
+p{
+text-align:justify;	
+text-justify:auto;
+}
+#board{
+    border: 5px solid purple;
+	Margin: 0 auto;
+	display: block;
+	
+}
+.comp{width: 45%; height: 200px; float:right; padding:10px;margin-left: 2px;border: 4px solid purple; background:#A86F47;}
+.player1{width: 45%; height: 200px; float:left; padding:10px; margin-left: 2px; margin-left: 1px; border: 4px solid purple;background:#A86F47;}
+.left{ width: 50%; height: 100%; float:left;}
+.right{ width: 50%; height: 100%; float:right;}
+.start{
+	height:200px;
+	width:200px;
+	border-radius: 100px;
+	background:green;
+	color: #000000;
+	font-size: 20pt;
+	font-weight: bold;
+	font-family: Calibri, Castellar; 
+	text-align: center;
+}
+.dice
+{
+	position:relative;
+	animation:myfirst 1s linear 0s infinite alternate;
+	/* Safari and Chrome: */
+	-webkit-animation:myfirst 1s linear 0s infinite alternate;
+}
+@keyframes myfirst
+{
+	from{-moz-transform: rotate(90deg); left:0px; top:0px;}
+	to{-moz-transform: rotate(225deg);left:0px; top:150px;}
+}
+
+@-webkit-keyframes myfirst /* Safari and Chrome */
+{
+	from{-webkit-transform: rotate(90deg); left:0px; top:0px;}
+	to{-webkit-transform: rotate(225deg); left:0px; top:150px;}
+}
+
+#autoAnim{
+	position:fixed;
+	top:60%;
+	left:2%;
+	animation:rotater 1s linear 0s infinite alternate;
+	/* Safari and Chrome: */
+	-webkit-animation:rotater 1s linear 0s infinite alternate;
+}
+@keyframes rotater
+{
+	from{-moz-transform: rotate(0deg);}
+	to{-moz-transform: rotate(180deg);}
+}
+
+@-webkit-keyframes rotater /* Safari and Chrome */
+{
+	from{-webkit-transform: rotate(0deg);}
+	to{-webkit-transform: rotate(360deg);}
+}

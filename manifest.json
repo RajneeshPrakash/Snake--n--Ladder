@@ -1,0 +1,16 @@
+{
+	"name": "Snake & Ladder",
+	"version": "1.0",
+	"manifest_version": 2,
+	"description": "Play a fun game of your child days",
+	"offline_enabled": true,
+	"app": {
+			"url":["https://googledrive.com/host/0B9kb5BUGs1mKUGZNZ29IQXAzX00/"],
+			"launch":{
+					"local_path": "index.html"
+					}
+			},
+	"icons": {
+			"128": "icon.png"
+		}
+}

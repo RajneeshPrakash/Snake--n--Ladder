@@ -1,0 +1,432 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Snake & Ladder</title>
+	<link rel="stylesheet" href="style\progressbar.css">
+	<link rel="stylesheet" href="style\main.css">
+	<link rel="shortcut icon" href="Images\favicon.ico" /> 
+	<script src="js\jquery-1.10.2.min.js" type="text/javascript"></script>
+	<script src="js\modernizr.js" type="text/javascript"></script>
+</head>
+<body id="main" style="background: url(Images/home.png) no-repeat;background-size: 100%;">
+		<ul id="coolMenu" style="display:none;">
+			<li>
+				<a href="#">MENU</a>
+				<ul class="noJS">
+					<li><a href="#" id="op1">Change Game Mode</a></li>
+					<li><a href="#" id="op2">Restart</a></li>
+					<li><a href="#" id="op3">Exit</a></li>
+					<li><a href="#" id="op4">Help</a></li>
+				</ul>
+			</li>
+		</ul>
+	
+	<div class="left">
+		<div id="score" style="display:none;position:relative;top:5%;">
+			<div class="turn1" id="arrow1" title="your turn">&#10162;</div>
+			<div class="turn2" id="arrow2" style="display:none;" title="your turn">&#10162;</div> 
+			<div class="player1">
+				<div style="display:inline;">
+				<h1 id="name1" style="font-size:15pt;color:black; float:left;">You</h1>
+				<img id="imgB" src="Images\player.jpg" height="50" style="float:right; border-radius:30px;" width="50"/>
+				<img id="imgG1" src="Images\gplayer1.jpg" height="50" style="float:right; border-radius:30px; display:none;" width="50"/>
+				</div>
+				<br/><br><br><br>
+				<div style="display:inline;">
+				<p class="text">Current Position:<span id="pos1" style="float:right; font-weight:bold; font-size:20pt;"/></p>
+				</div>
+				<p class="text">Your Coin: <img src="Images\red.png" height="35" style="float:right; border-radius:30px;" width="35"/></p>
+				<br>
+			</div>
+			<div class="comp">
+				<h1 id="name2" style="font-size:15pt;color:black; float:left;">Computer</h1>
+				<img id="imgG" src="Images\gplayer.jpg" height="50" style="float:right; border-radius:30px;" width="50"/></h1>
+				<img id="imgB1" src="Images\player1.jpg" height="50" style="float:right; border-radius:30px;display:none;" width="50"/></h1>
+				<br/><br><br><br>
+				<div style="display:inline;">
+				<p class="text">Current Position:<span id="pos2" style="float:right; font-weight:bold; font-size:20pt;"/></p>
+				</div>
+				<p class="text">Your Coin: <img src="Images\green.png" height="40" style="float:right; border-radius:30px;" width="40"/></p>
+				<br>
+			</div>
+		</div>
+		</br>
+		<marquee><p id="para" style="display:none;"> Please <mark>Click on the dice cup</mark> to pour down the dice </p></marquee>
+		<div>
+			<input type="button" id="start" class="start" value="Play" />
+				</br>
+		</div>
+		<div>
+			<input type="button" id="Restart" style="display:none;" class="start" value="Roll The Dice!!"  />
+			<input type="hidden" id="hideProg"/>		 
+		</div>
+		<div>
+			
+			<div class="left">
+				<img src="Images\cup.png" id="cup" style="display:none; border-radius:150px;" height="300" width="200"/>
+			</div>
+			<div class="right">
+				<img src="Images\1.jpg" id="dice1" class="img" style="display:none;" height="100" width="100"/>
+				<img src="Images\2.jpg" id="dice2" class="img" style="display:none;" height="100" width="100"/>
+				<img src="Images\3.png" id="dice3" class="img" style="display:none;" height="100" width="100"/>
+				<img src="Images\4.png" id="dic4" class="img" style="display:none;" height="100" width="100"/>
+				<img src="Images\5.png" id="dice5" class="img" style="display:none;" height="100" width="100"/>
+				<img src="Images\6.jpg" id="dice6" class="img" style="display:none;" height="100" width="100"/>
+			</div>
+		</div>
+	</div>
+	<div id="alert1" style="display:none;"><div id="alert"><div id="msg"></div><img src="Images\ok2.jpg" id="ok" style="position:absolute; top:60%; left:40%; border-radius:25px;" height="50" width="60"/></div></div>
+	<div id="level" class="window" style="display:none;"> 
+		<p style="position:absolute; top:5%; left:38%; font:bold 15px 'Comic Sans MS', cursive, sans-serif;">Select game level</p>
+		<br>
+		<div class="pointer" title="your turn">&#10162;</div>
+		<div id="one" title="Click to choose the game level" style="position:absolute; top:15%; left:20%; font:bold 40px 'Comic Sans MS', cursive, sans-serif; padding-top:10px; border-radius:35px; background:red; height:100px; width:400px;">Play Vs Computer</div>
+		<br>
+		<div id="two" title="Click to choose the game level" style="position:absolute; top:35%; left:20%; font:bold 40px 'Comic Sans MS', cursive, sans-serif; padding-top:10px; border-radius:35px; height:100px; background:green; width:400px;">2-Player</div>
+		<br>
+		<div id="three" title="Click to choose the game level" style="position:absolute; top:55%; left:20%; font:bold 40px 'Comic Sans MS', cursive, sans-serif; padding-top:10px; border-radius:35px; height:100px; background:#69434E; width:400px;">3-Player</div>
+		
+	</div>
+	<div id="autoAnim"  style="display:none;">
+		<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg">
+			<defs>
+				<marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="mcircle_o" orient="auto" markerUnits="strokeWidth" id="se_marker_mid_svg_1">
+				<circle stroke-width="10" stroke="#000000" fill="none" cy="50" cx="50" r="30"/>
+				</marker>
+			</defs>
+			<g>
+				<path marker-mid="url(#se_marker_mid_svg_1)" class="cloud" id="svg_1" d="m187,82.5l267.52631,0l-86.55264,147.5294l118.02634,183.29414l-246.54387,11.17645l110.15791,-185.52942l-162.61404,-156.47058z" stroke-width="5" stroke="#000000" fill="#C48A0C"/>
+			</g>
+		</svg>
+	</div>
+	<div id="cloud1" class="cloud" style="left:18%;display:none;" >
+		<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+			<defs>
+				<marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="mcircle_o" orient="auto" markerUnits="strokeWidth" id="se_marker_mid_svg_1">
+				<circle stroke-width="10" stroke="#000000" fill="none" cy="50" cx="50" r="30"/>
+				</marker>
+			</defs>
+			<g>
+				<path id="svg_2" d="m156.02829,142.68555c-0.5334,0.01146 -1.04912,0.04059 -1.58499,0.07547c-8.57472,0.55786 -16.14268,4.10904 -19.98792,9.40048l-2.03825,4.00362c0.43921,-1.38692 1.11444,-2.73296 2.03825,-4.00362c-6.8571,-4.63693 -16.48039,-6.77611 -25.99025,-5.77283c-9.50984,1.00523 -17.76794,5.03003 -22.28162,10.86688c-12.74133,-5.12006 -28.62457,-4.81021 -40.91026,0.80949c-12.28722,5.61781 -18.83632,15.56664 -16.84629,25.60445l1.30239,4.07994c-0.58937,-1.33643 -1.02789,-2.69614 -1.30239,-4.07994l-0.19892,0.37567c-10.67984,0.76025 -19.43962,6.16794 -21.714,13.40497c-2.27569,7.2373 2.45557,14.66414 11.72117,18.40613l14.46739,2.29324c-5.0518,0.27104 -10.09612,-0.52693 -14.46739,-2.29324c-7.14716,5.2236 -8.79152,12.95749 -4.07677,19.34532c4.71334,6.38673 14.78204,10.06406 25.16818,9.23013l6.31397,-1.0905c-2.03163,0.55492 -4.14126,0.91629 -6.31397,1.0905c5.89761,7.08395 15.67381,12.25066 27.15153,14.30754c11.47705,2.05597 23.66919,0.84058 33.83279,-3.36526c8.29218,8.53387 23.01036,13.01578 37.76849,11.50497c14.75743,-1.5097 26.93196,-8.74979 31.25648,-18.57434l1.49951,-5.49005c-0.22398,1.86499 -0.71153,3.6993 -1.49951,5.49005c10.15021,4.3441 22.9198,4.58827 33.40836,0.63989c10.48853,-3.94911 17.03244,-11.48166 17.1282,-19.68428l-3.76065,-12.25551l-14.81161,-8.29251c11.45319,4.6812 18.67538,11.81581 18.57227,20.54802c13.6192,0.09392 25.18811,-7.52164 30.37869,-16.26082c5.19107,-8.7412 3.22781,-18.70432 -5.15262,-26.18944c3.47543,-5.57329 3.26941,-11.91252 -0.5661,-17.37059c-3.83643,-5.4612 -10.91248,-9.51881 -19.422,-11.11194c-1.90482,-7.23697 -9.7554,-13.05643 -20.12976,-14.96405c-10.37506,-1.90785 -21.42233,0.44437 -28.36841,6.0528l-4.21922,4.64258c1.0782,-1.67743 2.48575,-3.24336 4.21922,-4.64258c-4.89751,-4.40738 -12.57675,-6.89529 -20.58401,-6.73065l0,0z" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="red" fill="#FFFFFF"/>
+				<text transform="matrix(1.9831161418270824,0,0,1.120615814858197,-17.967973311027094,-66.0817332813348) " xml:space="preserve" text-anchor="middle" font-family="'Comic Sans MS', cursive, sans-serif" font-size="14" id="svg_3" y="243.97252" x="77.64627" stroke-linecap="null" stroke-linejoin="null" stroke-width="0" stroke="#000000" fill="#000000">you got10</text>
+			</g>
+		</svg>
+	</div>
+	<div id="cloud2" class="cloud" style="display:none;">
+		<svg width="500" height="300" xmlns="http://www.w3.org/2000/svg">
+			<defs>
+				<marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="mcircle_o" orient="auto" markerUnits="strokeWidth" id="se_marker_mid_svg_1">
+				<circle stroke-width="10" stroke="#000000" fill="none" cy="50" cx="50" r="30"/>
+				</marker>
+			</defs>
+			<g>
+				
+				<path fill="#FFFFFF" stroke="green" stroke-width="5" d="m152.35899,134.33c-6.129,0 -11.064,2.08701 -11.064,4.67799l0,62.517c0,2.59201 4.935,4.67801 11.064,4.67801l49.442,0c-2.043,0.991 -3.172,2.065 -3.172,3.19c0,4.81999 20.47701,8.72099 45.765,8.72099c25.28401,0 45.765,-3.901 45.765,-8.72099c0,-1.125 -1.13,-2.19901 -3.177,-3.19l142.987,0c6.129,0 11.064,-2.086 11.064,-4.67801l0,-62.517c0,-2.59099 -4.935,-4.67799 -11.064,-4.67799l-277.61,0l0,0l0,0l0,0zm54.317,84.634c-13.896,0 -25.14799,2.28299 -25.14799,5.103c0,2.81999 11.252,5.103 25.14799,5.103c13.888,0 25.14401,-2.283 25.14401,-5.103c0,-2.82001 -11.25601,-5.103 -25.14401,-5.103zm-25.14799,12.759c-7.77901,0 -14.08,1.71199 -14.08,3.827c0,2.114 6.30099,3.828 14.08,3.828c7.77901,0 14.084,-1.714 14.084,-3.828c0,-2.11501 -6.30499,-3.827 -14.084,-3.827zm-24.138,9.35599c-5.00301,0 -9.05299,0.95201 -9.05299,2.125c0,1.17601 4.04999,2.12601 9.05299,2.12601c4.99901,0 9.05299,-0.95 9.05299,-2.12601c0,-1.17299 -4.05399,-2.125 -9.05299,-2.125z" id="svg_4"/>
+				<text fill="#000000" stroke="#000000" stroke-width="0" stroke-linejoin="null" stroke-linecap="null" x="560.91269" y="177" id="svg_5" font-size="14" font-family="'Comic Sans MS', cursive, sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1.492708724073566,0,0,1,-552.2792572962136,0) ">you got 10</text>
+			</g>
+		</svg>
+	</div>
+	<div id="svg1" style="display:none;">
+	<div id="star1" class="star" style="position:fixed;top:5%;left:10%;">
+		<svg width="500" height="300" xmlns="http://www.w3.org/2000/svg">
+			<defs>
+				<marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="mcircle_o" orient="auto" markerUnits="strokeWidth" id="se_marker_mid_svg_1">
+				<circle stroke-width="10" stroke="#000000" fill="none" cy="50" cx="50" r="30"/>
+				</marker>
+			</defs>
+			<g>				
+			  <path id="svg1_1" d="m73.635,61.57982l10.31306,0l3.18694,-9.79757l3.18693,9.79757l10.31307,0l-8.34335,6.05496l3.18691,9.79758l-8.34356,-6.05527l-8.34335,6.05527l3.18671,-9.79758l-8.34336,-6.05496l0,0z" stroke-width="5" stroke="#000000" fill="#FF0000"/>
+			</g>
+		</svg>
+	</div>
+	<div id="star2" class="star" style="position:fixed;top:8%;left:58%;">
+		<svg width="500" height="300" xmlns="http://www.w3.org/2000/svg">
+			<defs>
+				<marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="mcircle_o" orient="auto" markerUnits="strokeWidth" id="se_marker_mid_svg_1">
+				<circle stroke-width="10" stroke="#000000" fill="none" cy="50" cx="50" r="30"/>
+				</marker>
+			</defs>
+			<g>				
+				    <path id="svg1_2" d="m249.32999,110.01961l18.33545,0l5.66455,-17.41736l5.66455,17.41736l18.33545,0l-14.83301,10.7644l5.66602,17.41736l-14.83301,-10.76475l-14.83301,10.76475l5.66602,-17.41736l-14.83301,-10.7644z" stroke-width="5" stroke="#000000" fill="#FF0000"/>
+			</g>
+		</svg>
+	</div>
+	<div id="star3" class="star" style="position:fixed;top:18%;left:18%;">
+		<svg width="500" height="300" xmlns="http://www.w3.org/2000/svg">
+			<defs>
+				<marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="mcircle_o" orient="auto" markerUnits="strokeWidth" id="se_marker_mid_svg_1">
+				<circle stroke-width="10" stroke="#000000" fill="none" cy="50" cx="50" r="30"/>
+				</marker>
+			</defs>
+			<g>				
+				    <path id="svg1_3" d="m65.42,165.19452l38.19727,0l11.80299,-36.28728l11.80246,36.28728l38.19728,0l-30.90213,22.42642l11.80402,36.28568l-30.90163,-22.42592l-30.90218,22.42592l11.80403,-36.28568l-30.90211,-22.42642z" stroke-width="5" stroke="#000000" fill="#FF0000"/>
+			</g>
+		</svg>
+	</div>
+	<div id="star4" class="star" style="position:fixed;top:22%;left:60%;">
+		<svg width="500" height="300" xmlns="http://www.w3.org/2000/svg">
+			<defs>
+				<marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="mcircle_o" orient="auto" markerUnits="strokeWidth" id="se_marker_mid_svg_1">
+				<circle stroke-width="10" stroke="#000000" fill="none" cy="50" cx="50" r="30"/>
+				</marker>
+			</defs>
+			<g>		
+				  <path id="svg1_4" d="m273.58261,213.32552l5.72937,0l1.77063,-5.44327l1.77063,5.44327l5.72937,0l-4.63486,3.36389l1.77017,5.44304l-4.63531,-3.36389l-4.63486,3.36389l1.77017,-5.44304l-4.63531,-3.36389z" stroke-width="5" stroke="#000000" fill="#FF0000"/>
+			</g>
+		</svg>
+	</div>
+	<div id="star5" class="star" style="position:fixed;top:58%;left:0%;">
+		<svg width="500" height="300" xmlns="http://www.w3.org/2000/svg">
+			<defs>
+				<marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="mcircle_o" orient="auto" markerUnits="strokeWidth" id="se_marker_mid_svg_1">
+				<circle stroke-width="10" stroke="#000000" fill="none" cy="50" cx="50" r="30"/>
+				</marker>
+			</defs>
+			<g>				
+				  <path id="svg1_5" d="m394.53,169.83299l3.216,0l0.99399,-3.056l0.995,3.056l3.216,0l-2.60199,1.88802l0.99399,3.056l-2.603,-1.88901l-2.60199,1.88901l0.99399,-3.056l-2.60199,-1.88802l0,0z" stroke-width="5" stroke="#000000" fill="#FF0000"/>
+			</g>
+		</svg>
+	</div>
+	<div id="star6" class="star" style="position:fixed;top:38%;left:15%;">
+		<svg width="500" height="300" xmlns="http://www.w3.org/2000/svg">
+			<defs>
+				<marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="mcircle_o" orient="auto" markerUnits="strokeWidth" id="se_marker_mid_svg_1">
+				<circle stroke-width="10" stroke="#000000" fill="none" cy="50" cx="50" r="30"/>
+				</marker>
+			</defs>
+			<g>				
+				  <path id="svg1_6" d="m341.07501,51.61169l35.90546,0l11.09454,-34.10944l11.09732,34.10944l35.90268,0l-29.04861,21.08276l11.09723,34.10941l-29.04861,-21.08261l-29.04861,21.08261l11.09451,-34.10941l-29.0459,-21.08276z" stroke-width="5" stroke="#000000" fill="#FF0000"/>
+			</g>
+		</svg>
+	</div>
+	<div id="star7" class="star" style="position:fixed;top:65%;left:50%;">
+		<svg width="500" height="300" xmlns="http://www.w3.org/2000/svg">
+			<defs>
+				<marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="mcircle_o" orient="auto" markerUnits="strokeWidth" id="se_marker_mid_svg_1">
+				<circle stroke-width="10" stroke="#000000" fill="none" cy="50" cx="50" r="30"/>
+				</marker>
+			</defs>
+			<g>
+				  <path id="svg1_7" d="m422.35498,214.01642l22.5365,0l6.9632,-21.40916l6.9649,21.40916l22.5354,0l-18.23096,13.23167l6.96326,21.4091l-18.2326,-13.23169l-18.22949,13.23169l6.9624,-21.4091l-18.2326,-13.23167z" stroke-width="5" stroke="#000000" fill="#FF0000"/>
+			</g>
+		</svg>
+	</div>
+	<div id="star8" class="star" style="position:fixed;top:62%;left:75%;">
+		<svg width="500" height="300" xmlns="http://www.w3.org/2000/svg">
+			<defs>
+				<marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="mcircle_o" orient="auto" markerUnits="strokeWidth" id="se_marker_mid_svg_1">
+				<circle stroke-width="10" stroke="#000000" fill="none" cy="50" cx="50" r="30"/>
+				</marker>
+			</defs>
+			<g>				
+				  <path id="svg1_8" d="m214.63501,55.69417l6.87558,0l2.12442,-6.53192l2.12497,6.53192l6.87503,0l-5.56238,4.03676l2.12476,6.53165l-5.56238,-4.03693l-5.56238,4.03693l2.12454,-6.53165l-5.56216,-4.03676z" stroke-width="5" stroke="#000000" fill="#FF0000"/>
+			</g>
+		</svg>
+	</div>
+	<div id="star9" class="star" style="position:fixed;top:55%;left:2%;">
+		<svg width="500" height="300" xmlns="http://www.w3.org/2000/svg">
+			<defs>
+				<marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="mcircle_o" orient="auto" markerUnits="strokeWidth" id="se_marker_mid_svg_1">
+				<circle stroke-width="10" stroke="#000000" fill="none" cy="50" cx="50" r="30"/>
+				</marker>
+			</defs>
+			<g>				
+				  <path id="svg1_9" d="m329.14001,206.91299l6.11099,0l1.88901,-5.806l1.888,5.806l6.112,0l-4.94501,3.58801l1.88901,5.806l-4.944,-3.58801l-4.944,3.58801l1.888,-5.806l-4.944,-3.58801l0,0z" stroke-width="5" stroke="#000000" fill="#FF0000"/>
+			</g>
+		</svg>
+	</div>
+	<div id="star10" class="star" style="position:fixed;top:30%;left:58%;">
+		<svg width="500" height="300" xmlns="http://www.w3.org/2000/svg">
+			<defs>
+				<marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="mcircle_o" orient="auto" markerUnits="strokeWidth" id="se_marker_mid_svg_1">
+				<circle stroke-width="10" stroke="#000000" fill="none" cy="50" cx="50" r="30"/>
+				</marker>
+			</defs>
+			<g>				
+				    <path id="svg1_10" d="m185.66501,225.39099l11.84088,0l3.65912,-11.24899l3.6588,11.24899l11.8412,0l-9.57961,6.952l3.65929,11.24902l-9.57968,-6.953l-9.57961,6.953l3.659,-11.24902l-9.57939,-6.952l0,0z" stroke-width="5" stroke="#000000" fill="#FF0000"/>
+			</g>
+		</svg>
+	</div>
+	</div>
+	<div id="form" class="window" style="display:none;"> 
+		<div id="play1" style="position:absolute;left:20%;top:5%;">
+			<p class="text">Enter first player name:</p>
+			<input type="text" id="nameB" style="position:absolute;left:110%;top:5%;" maxlength="10" placeholder="Only First name" autofocus>
+			<br>
+			<p class="text">Gender:</p>
+			<input list="browsers" id="gender1" style="position:absolute;left:110%;top:50%;">
+				<datalist id="browsers">
+					<option value="Male">
+					<option value="Female">					
+				</datalist>		
+		</div>
+		<div id="play2" style="position:absolute;left:20%;top:45%;">
+			<p class="text">Enter second player name:</p>
+			<input type="text" id="nameG" style="position:absolute;left:100%;top:5%;" maxlength="10" placeholder="Only First name" autofocus>
+			<br>
+			<p class="text">Gender:</p>
+			<input list="browsers" id="gender2" style="position:absolute;left:100%;top:50%;">
+					
+		</div>
+		<img src="Images\ok4.png" id="submit" style="position:absolute; top:85%; left:45%; border-radius:25px;" height="50" width="60"/>
+	</div>
+	<div class="right">
+		<details id="help">
+			<summary>Help</summary>
+			<div>
+				<div class="help1">
+					<section>
+						<header>Guidelines to Play</header>
+						<ul>
+							<li>Player</li>
+							<ul>
+								<li>1-Player</li>
+								<p>In this mode, player plays with computer. Every next turn will be automatically played by computer.</p>
+							
+								<li>2-Player</li>
+								<p>In this mode, player plays with another player. Every next turn will be played by each of them.</p>
+							
+								<li>3-Player ( Currenlty not Supported )</li>
+								<p>In this mode, 3 player play this game at a time. Every next turn will be played by each of them in order. Game will automatically guide them about whose turn it is?.</p>
+							</ul>
+							<li>Game Rule</li>
+							<ul>
+								<li>Mode</li>
+								<p>A player has to choose the game mode and register his name and also choose the coin colour.</p>
+								
+								<li>Win</li>
+								<p>Each player can click on the dice cup in their respective order. Based on the dice point received by them, 
+								their respective coin will be moved accordingly automatically. 
+								To start the game a player must get six to move his coin for the first time. 
+								When a player gets six, he gets another chance to throw the dice to accumulate more points.
+								Player who reaches to 100th place with the fastest move will be decided as winner.
+								</p>
+							</ul>
+						</ul>
+											
+				</div>
+								
+				<aside style="text-align:right; font-weight:bold; color:#800000;">All Rights Reserved &copy; rajneeshprakash</aside>
+			</div>
+		</details>
+		<canvas id="board" width="650" height="650" style="display:none;"></canvas>
+	</div>
+
+	<script src="js\main.js"></script>
+	<audio id="audiotag2" src="music\snake.mp3" ></audio>
+	<audio id="audiotag1" src="music\ladder.mp3"></audio>
+	<audio id="audiotag3" src="music\main.mp3"></audio>
+	<audio id="audiotag4" src="music\congrats.mp3"></audio>
+
+	<div class="demo-wrapper html5-progress-bar" style="display:none;" id="prog">
+		<div class="progress-bar-wrapper">
+			<progress id="progressbar" value="0" max="100"></progress>
+			<span class="progress-value">0%</span>
+		</div>
+	</div>
+	
+	<div style="position:absolute; z-index:500; height:100%; width:100%; background:#800000; text-align:center; opacity:0.4;" id="banner"></div>
+		<div class="window" id="desc">
+			<div style="float:right;position:absolute; left:96%">
+				<img src="Images\close.png" id="close" style="position:absolute; z-index:1100;border-radius:100px;" height="30" width="30" title="Close"/>
+			</div>
+			<div style="position:absolute; height:98%; left:1%; top:7%; width:700px; overflow:hidden">
+				<div style="position:absolute; height:86%; width:720px; overflow-y:scroll; overflow-x:hidden;">
+					<header> 
+						<h1>Snake & Ladder</h1>
+						<nav>
+						<h6>Designed In</h6>
+							<ul> 
+								<li><a href="http://www.w3.org/TR/html5/" target="_blank">HTML5</a> </li>&nbsp;
+								<li><a href="http://www.w3.org/Style/CSS/Overview.en.html" target="_blank">CSS</a> </li>&nbsp;
+								<li><a href="http://jquery.com/" target="_blank">Jquery</a> </li>&nbsp;
+								<li><a href="http://www.w3schools.com/js/" target="_blank">Javascript</a> </li>&nbsp;
+							</ul>
+						</nav>
+					</header>
+  
+					<aside>
+						<h1>Tangentially related stuff</h1>
+						<div>
+							<marquee><h2>Coming Up</h2></marquee>
+							<ul> 
+								<li><a href="#">Snake Game</a></li>
+								<li><a href="#">SpiderMan Aninmation</a></li>								
+								<li><a href="#">Tic-Tac-Toe</a></li>
+								<li><a href="#">Official Game Website</a></li>
+							</ul>  
+						</div>
+					</aside>
+					
+					<article>
+						<header>Game Description</header>
+						<p>Snakes and Ladders is an ancient Indian board game regarded today as a worldwide classic.
+						It is played between two or more players on a gameboard having numbered, gridded squares.
+						A number of "ladders" and "snakes" are pictured on the board, each connecting two specific board squares.
+						The object of the game is to navigate one's game piece, according to die rolls, from the start (bottom square) to the finish 
+						(top square), helped or hindered by ladders and snakes respectively. </p>
+					</article>
+					<section>
+						<header>Guidelines to Play</header>
+						<article>
+							<header>Player</header>
+							<section>
+								<header>1-Player</header>
+								<p>In this mode, player plays with computer. Every next turn will be automatically played by computer.</p>
+							</section>
+							<section>
+								<header>2-Player</header>
+								<p>In this mode, player plays with another player. Every next turn will be played by each of them.</p>
+							</section>
+							<section>
+								<header title="Currenlty not Supported">3-Player</header>
+								<p>In this mode, 3 player play this game at a time. Every next turn will be played by each of them in order. Game will automatically guide them about whose turn it is?.</p>
+							</section>
+						</article>
+						<article>
+							<header>Game Rule</header>
+							<section>
+								<header>Mode</header>
+								<p>A player has to choose the game mode and register his name and also choose the coin colour.</p>
+							</section>
+							<section>
+								<header>Win</header>
+								<p>Each player can click on the dice cup in their respective order. Based on the dice point received by them, 
+								their respective coin will be moved accordingly automatically. 
+								To start the game a player must get six to move his coin for the first time. 
+								When a player gets six, he gets another chance to throw the dice to accumulate more points.
+								Player who reaches to 100th place with the fastest move will be decided as winner.
+								</p>
+							</section>
+						</article>
+					</section>
+					        
+					<footer>
+						Copy Right Reseved &copy;rajneeshprakash
+					</footer>
+				</div>
+			</div>
+		</div>
+		
+	<div class="divShareManual"> 
+		<br>&nbsp; 
+		<a href="https://www.facebook.com/prakash.rajneesh" target="_blank" style=" text-decoration: none;"> <img class="shareButton" src="Images\fb.png" width="20" height="20" title="Like on Facebook" /> </a> 
+		<br>&nbsp; 
+		<a href="https://twitter.com/share" target="blank" style="text-decoration: none;"> <img class="shareButton" src="Images\twic.png" width="20" height="20" title="Like on Twitter" /> </a> 
+		<br>&nbsp; 
+		<a href="https://plus.google.com/117751854152363554742/posts" target="_blank" style=" text-decoration: none;"> <img class="shareButton" src="Images\google.jpg" width="20" height="20" title="Like on Google +" /> </a> 
+		<br>&nbsp; 
+		<a href="http://www.linkedin.com/in/rajneeshprakash" target="_blank" style=" text-decoration: none;"> <img class="shareButton" src="Images\linkedIn.jpg" width="20" height="20" title="Like on LinkedIn" /> </a> 
+		<br>&nbsp; 
+		<a href="http://rajneeshprakash.wordpress.com/" target="_blank" style=" text-decoration: none;"> <img class="shareButton" src="Images\wordpress.jpg" width="20" height="20" title="Visit My Blog" /> </a> 
+		<br>&nbsp;
+		<a href="http://rajneeshprakash.webs.com/" target="_blank" style=" text-decoration: none;"> <img class="shareButton" src="Images\webs.png" width="20" height="16" title="Visit My Website" /> </a> 
+		<br>&nbsp;
+	</div>
+	<div>
+		<img src="Images\fullscreen.png" class="full" id="fullscreen" alt="fullScreen" height="50" width="50" title="Go FullScreen">
+		<img src="Images\exit.png" class="full" id="exit" alt="exit" style="display:none;" height="50" width="50" title="Exit FullScreen">
+	</div>
+  
+</body>
+</html>
